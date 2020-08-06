@@ -1,0 +1,65 @@
+<div class="container fixed-bottom colorBody1">
+    <div class="container text-center colorNavbar2">
+
+        <button (click)="privacidad()" type="button" class="btn btn-warning btn-sm cookies8 mt-n1">
+            <u>Politica de Provacidad y Cookies</u>
+        </button>
+
+        <div class="row">
+            <div class="col">
+                <a (click)="whatsApp()" class="cursor7">
+                    <i class="fab fa-whatsapp mr-3 ml-3"></i>
+                </a>
+                <a href="https://www.facebook.com" target="_blank">
+                    <i class="fab fa-facebook mr-3"></i>
+                </a>
+                <a href="mailto:yeison.oyola@sophossolutions.com" target="_blank">
+                    <i class="fas fa-envelope mr-3"></i>
+                </a>
+                <a href="https://www.linkedin.com/" target="_blank">
+                    <i class="fab fa-linkedin-in mr-3"></i>
+                </a>
+                <a href="https://www.instagram.com/" target="_blank">
+                    <i class="fab fa-instagram mr-3"></i>
+                </a>
+                <a href="https://www.twitter.com" target="_blank">
+                    <i class="fab fa-twitter mr-3"></i>
+                </a>
+            </div>
+        </div>
+
+        <p class="mb-1">
+            <small class="text-muted colorName3">
+                Copyrigth &copy;&nbsp;Yeison Andrés Oyola Vanegas ({{year}})&nbsp; Todos los derechos reversados
+            </small>
+        </p>
+
+    </div>
+</div>
+
+<!-- Modal Privacidad-->
+<div class="modal fade" id="privacidad" data-backdrop="static" tabindex="-1" role="dialog" 
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content colorModal11">  
+          <div class="container backModal12">
+            <div class="modal-body text-center colorTexto10">
+                <h4 class="colorName3 text-uppercase mb-4">
+                    <u>Política de Privacidad y Cookies</u>
+                </h4>
+                <p class="font-weight-light text-justify">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, quas velit deserunt possimus libero placeat cumque cupiditate iure sed reiciendis repudiandae accusantium nulla hic asperiores maiores nam error rem dolores. Distinctio non, laborum hic beatae, illo in labore sint perspiciatis quam esse veniam quisquam magni reiciendis, aliquid praesentium impedit? Sequi deleniti sit reprehenderit corporis autem quia a modi sunt at, odio aperiam repudiandae soluta, ipsam recusandae illo cumque optio? Delectus provident excepturi, ipsa consequatur ut optio. Eum, pariatur odio sequi laudantium ipsum impedit voluptates provident veniam dolorem animi nesciunt ipsam nobis repudiandae maiores dolores, deleniti quibusdam architecto? Tempora rerum officia cumque, fugit quibusdam exercitationem, modi facere debitis ipsam, alias doloremque? Possimus repellendus harum ratione cupiditate, quos doloremque eum similique dolorem incidunt magni hic aliquid magnam ut at a quaerat, ullam commodi natus eaque facilis! Adipisci deserunt cupiditate rem, quaerat quae consectetur alias nemo fugiat nam ea aperiam ad ipsam excepturi voluptatem soluta at cumque dignissimos architecto enim hic obcaecati quidem? Distinctio quidem illum atque possimus!
+                    <div class="container text-center">
+                        <button *ngIf="modalService.privacidad" (click)="salir()" class="btn btn-outline-warning colorName3"
+                          type="button">
+                          <i class="fas fa-check"></i>
+                        </button>
+                        <button *ngIf="!modalService.privacidad" (click)="irAlerta()" class="btn btn-outline-warning colorName3"
+                          type="button">
+                          <i class="fas fa-check"></i>
+                        </button>
+                      </div>
+      </div>
+    </div>
+  </div>
+</div>
