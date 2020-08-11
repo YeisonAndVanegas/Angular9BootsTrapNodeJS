@@ -9,6 +9,9 @@ export class ModalService {
   privacidad: boolean;
   privacidadSeleccionada: boolean;
 
+  online: boolean;
+  ojo2: boolean;
+
   constructor() { }
 
   politicaPrivacidad() {
@@ -31,6 +34,19 @@ export class ModalService {
       this.privacidadSeleccionada = true;
     }, 100);
     $('#alerta').modal('hide');
-    // Abrir modal contacto y cerrar modal alerta
+    setTimeout(() => {
+      $('#contacto').modal();
+    }, 500);
+    $(document).ready(() => {
+      $('#contacto').on('shown.bs.modal', () => {
+        $('#focusInput').trigger('focus');
+      })
+    })
   }
+
+  logOut() {
+    this.online = false;
+    this.ojo2 = true;
+  }
+
 }
