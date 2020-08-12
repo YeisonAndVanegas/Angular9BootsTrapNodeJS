@@ -8,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InicioComponent implements OnInit {
 
+  mostrarYo = true;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  yoMostrar() {
+    this.mostrarYo = !this.mostrarYo
   }
 
 }
