@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+declare let $: any;
+
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
@@ -17,6 +19,10 @@ export class InicioComponent implements OnInit {
 
   yoMostrar() {
     this.mostrarYo = !this.mostrarYo
+  }
+
+  tecnologias() {
+    $('#modalTecnologias').modal();
   }
 
 }
