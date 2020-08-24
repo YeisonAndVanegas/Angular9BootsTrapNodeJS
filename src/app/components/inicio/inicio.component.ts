@@ -25,4 +25,7 @@ export class InicioComponent implements OnInit {
     $('#modalTecnologias').modal();
   }
 
+  sobreMi() {
+    $('#sobreMi').modal();
+  }
 }
