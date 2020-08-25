@@ -7,5 +7,7 @@ export class NoticiaService {
 
   noticiaSel: any;
 
+  noticiaCompleta = false;
+
   constructor() { }
 }

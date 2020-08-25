@@ -67,11 +67,13 @@ export class NoticiasComponent implements OnInit {
 
   ngOnInit(): void {
     window.scrollTo(0,0);
+    this.noticiaService.noticiaCompleta = false;
   }
 
   mostrarNoticia(noticia: any){
     this.noticiaService.noticiaSel = noticia;
     console.log(this.noticiaService.noticiaSel);
+    this.noticiaService.noticiaCompleta = true;
     this.router.navigateByUrl('noticiaCompleta');
   }
 
