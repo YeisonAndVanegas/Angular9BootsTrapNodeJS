@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NoticiaService } from 'src/app/service/noticia.service';
+import { ImagenesYoService } from 'src/app/service/imagenes-yo.service';
 
 declare let $: any;
 
@@ -16,7 +17,8 @@ export class InicioComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private noticiaService: NoticiaService) { }
+    private noticiaService: NoticiaService,
+    public imagenesYo: ImagenesYoService) { }
 
   ngOnInit(): void {
     window.scrollTo(0,0);
