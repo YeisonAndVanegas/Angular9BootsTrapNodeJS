@@ -9,9 +9,9 @@
                     <div class="card backSobreMi19">
                         <div class="row no-gutters">
                             <div class="col-md-4 backYo21 mt-1">
-                                <img (click)="yoMostrar()" *ngIf="mostrarYo" src="../../../assets/img/4a.jpg"
+                                <img (click)="yoMostrar()" *ngIf="mostrarYo" [src]="imagenesYo.img1"
                                     class=" card-img cursor7 padin20">
-                                <img (click)="yoMostrar()" *ngIf="!mostrarYo" src="../../../assets/img/8a.jpg"
+                                <img (click)="yoMostrar()" *ngIf="!mostrarYo" [src]="imagenesYo.img3"
                                     class="card-img cursor7 padin20">
                             </div>
                             <div class="col-md-4 text-center">
@@ -55,9 +55,9 @@
                                 </div>
                             </div>
                             <div class="col-md-4 backYo21 mt-1">
-                                <img (click)="mostrarYo" *ngIf="mostrarYo" src="../../../assets/img/5a.jpg"
+                                <img (click)="mostrarYo" *ngIf="mostrarYo" [src]="imagenesYo.img2"
                                     class="card-img cursor7 padin20">
-                                <img (click)="!mostrarYo" *ngIf="!mostrarYo" src="../../../assets/img/9a.jpg"
+                                <img (click)="!mostrarYo" *ngIf="!mostrarYo" [src]="imagenesYo.img4"
                                     class="card-img cursor7 padin20">
                             
                         </div>
