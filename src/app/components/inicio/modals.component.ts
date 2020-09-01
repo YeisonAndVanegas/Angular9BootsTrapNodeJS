@@ -13,6 +13,7 @@ declare let $:any;
 export class ModalsComponent implements OnInit {
 
   tecnologiasDestacadas: string[] = [];
+  sobreMi: any;
 
   tec1: string[] = [];
   tec2: string[] = [];
@@ -30,10 +31,12 @@ export class ModalsComponent implements OnInit {
       this.tec1 = this.tecnologiasDestacadas.slice(0,3);
       this.tec2 = this.tecnologiasDestacadas.slice(3,6);
       this.tec3 = this.tecnologiasDestacadas.slice(6,9);
-      console.log(this.tec1);
-      console.log(this.tec2);
-      console.log(this.tec3);
     });
+
+    this.tecSobre.getSobreMi()
+    .subscribe((res: any) => {
+      this.sobreMi = res.sobreMi;
+    }); 
   }
 
   pagina1(){

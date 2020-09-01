@@ -51,29 +51,23 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content colorModal11">
             <div class="container backModal12">
-                <div class="modal-body text-center colorName3">
-                    <h2><u class="text-capitalize">Yeison Andrés Vanegas</u></h2>
+                <div *ngFor="let sobre of sobreMi" class="modal-body text-center colorName3">
+                    <h2><u class="text-capitalize">{{sobre.titulo}}</u></h2>
                     <br>
                     <p class="font-weight-light text-justify colorTexto10 tab27">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ad incidunt ratione ab dicta ullam esse? Quisquam 
-                        ab similique eveniet ipsum doloribus aliquid earum obcaecati est, aut voluptatibus illo tenetur suscipit sed tempore
-                        culpa commodi qui incidunt rerum, mollitia eos.
+                        {{sobre.texto1}}
                     </p>
                     <p class="font-weight-light text-justify colorTexto10 tab27">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ad incidunt ratione ab dicta ullam esse? Quisquam 
-                        ab similique eveniet ipsum doloribus aliquid earum obcaecati est, aut voluptatibus illo tenetur suscipit sed tempore
-                        culpa commodi qui incidunt rerum, mollitia eos.
+                        {{sobre.texto2}}
                     </p>
                     <p class="font-weight-light text-justify colorTexto10 tab27">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ad incidunt ratione ab dicta ullam esse? Quisquam 
-                        ab similique eveniet ipsum doloribus aliquid earum obcaecati est, aut voluptatibus illo tenetur suscipit sed tempore
-                        culpa commodi qui incidunt rerum, mollitia eos.
+                        {{sobre.texto3}}
                     </p>
                     <p class="font-weight-light text-justify colorTexto10 tab27">
-                        
+                        {{sobre.texto4}}
                     </p>
                     <p class="font-weight-light text-justify colorTexto10 tab27">
-                        
+                        {{sobre.texto5}}
                     </p>
                     <hr>
                     <button (click)="cerrarSobreMi()" type="button" class="btn btn-outline-warning tamanoSalir26 btn-sm">Salir</button>
