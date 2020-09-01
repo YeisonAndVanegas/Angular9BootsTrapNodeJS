@@ -16,4 +16,8 @@ export class TecnologiaSobreMiService {
   getTecnologia(){
     return this.http.get(`${urlBase}/tecnologia/getTecno`);
   }
+
+  getSobreMi(){
+    return this.http.get(`${urlBase}/sobreMi/getSobreMi`);
+  }
 }
