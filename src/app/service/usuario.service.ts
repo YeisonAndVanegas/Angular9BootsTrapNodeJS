@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { promise } from 'protractor';
-import { resolve } from 'dns';
 import { Router } from '@angular/router';
+import { pluck } from 'rxjs/operators';
 
 const urlBase = environment.url;
 
@@ -13,12 +12,15 @@ const urlBase = environment.url;
 export class UsuarioService {
 
   token: string = null;
+  pass = '';
   autentificado = false;//Grand
 
   constructor(
     private http: HttpClient,
-    private router: Router  
-  ) { }
+    private router: Router
+  ) { 
+    this.getId();
+  }
 
   login(nombre: string, password: string){
 
@@ -47,5 +49,14 @@ export class UsuarioService {
     this.token = null;
     this.autentificado = false;
     this.router.navigateByUrl('inicio');
+  }
+
+  getId(){
+    return this.http.get(`${urlBase}/sobreMi/getSobreMi`)
+    .pipe(
+      pluck('sobreMi', '0', '_id')
+    ).subscribe((res: any) => {
+      this.pass = res;
+    });
   }
 }

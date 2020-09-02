@@ -17,7 +17,7 @@ export class NavbarComponent implements OnInit {
    ojo: boolean = true;
    login1: boolean;
    input1: boolean;
-   clave = '';
+   clave = '5f4d992d8573c5685cf29cc8';//Solo en Desarrollo
 
   constructor(
     public modalService: ModalService,
@@ -69,7 +69,7 @@ export class NavbarComponent implements OnInit {
   }
 
   inputLogin(){
-    if(this.clave !== '123'){
+    if(this.clave !== this.usuarioService.pass){
       this.login1 = false;
       this.input1 = false;
       this.clave = '';
