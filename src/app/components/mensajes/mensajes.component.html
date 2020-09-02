@@ -2,7 +2,7 @@
     <h3 class="ultimas text-uppercase font-weight-bold mt-5 text-left">
         <span class="badge badge-warning">Mensajes</span>
     </h3>
-    <div *ngFor="let mensaje of mensajesEmail; let i = index; let suma = count" 
+    <div *ngFor="let mensaje of mensajesEmail; let i = index" 
         class="container text-center mt-3">
         <ul class="list-unstyled backUltimas28 pt-4 pl-4 pr-4 mt-1 text-justify">
             <li class="text-left">
@@ -23,7 +23,7 @@
                         {{mensaje.mensaje}}
                     </span>
                     <div class="text-center">
-                        <span class="badge badge-warning mr-3">{{i+1}}/{{suma}}</span>
+                        <span class="badge badge-warning mr-3">{{i+1}}/{{mensajes.suma}}</span>
                     </div>
                 </div>
             </li>

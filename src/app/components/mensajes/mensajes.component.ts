@@ -15,7 +15,7 @@ export class MensajesComponent implements OnInit {
   mensajeSel: any;
 
   constructor(
-    private mensajes: MensajesService,
+    public mensajes: MensajesService,
     private router: Router
   ) { }
 
@@ -38,6 +38,9 @@ export class MensajesComponent implements OnInit {
         });
       }
     });
+
+    this.mensajes.sumaMensajes();
+
     window.scrollTo(0, 0);
   }
 
