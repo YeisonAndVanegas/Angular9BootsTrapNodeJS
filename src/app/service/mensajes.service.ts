@@ -16,4 +16,8 @@ export class MensajesService {
   getMensajes(){
     return this.http.get(`${urlBase}/contacto/getSms`);
   }
+
+  borrarMensajes(id: string){
+    return this.http.delete(`${urlBase}/contacto/deletedContact/${id}`);
+  }
 }
