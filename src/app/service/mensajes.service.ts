@@ -9,6 +9,8 @@ const urlBase = environment.url;
 })
 export class MensajesService {
 
+  suma: number;
+
   constructor(
     private http: HttpClient
   ) { }
@@ -20,4 +22,12 @@ export class MensajesService {
   borrarMensajes(id: string){
     return this.http.delete(`${urlBase}/contacto/deletedContact/${id}`);
   }
+
+  sumaMensajes(){
+    this.getMensajes()
+    .subscribe((res: any) => {
+      this.suma = res.mensajes.length;
+    });
+  }
+
 }
