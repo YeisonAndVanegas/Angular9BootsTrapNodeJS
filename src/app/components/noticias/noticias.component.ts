@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NoticiaService } from 'src/app/service/noticia.service';
 import { Router } from '@angular/router';
+import { Noticia, RespuestaNoticia } from 'src/app/interfaces/noticias';
 
 @Component({
   selector: 'app-noticias',
@@ -10,64 +11,22 @@ import { Router } from '@angular/router';
 })
 export class NoticiasComponent implements OnInit {
 
-  noticias = [
-    {
-      titulo: 'Lorem ipsum dolor sit amet',
-      subtitulo: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-      fecha: '17/05/2020',
-      img: '../../../assets/img/noticia1.jpg'
-    },
-    {
-      titulo: 'Lorem ipsum dolor sit amet',
-      subtitulo: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-      fecha: '17/05/2020',
-      img: '../../../assets/img/noticia2.jpg'
-    },
-    {
-      titulo: 'Lorem ipsum dolor sit amet',
-      subtitulo: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-      fecha: '17/05/2020',
-      img: '../../../assets/img/noticia3.jpg'
-    },
-    {
-      titulo: 'Lorem ipsum dolor sit amet',
-      subtitulo: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-      fecha: '17/05/2020',
-      img: '../../../assets/img/noticia4.jpg'
-    },
-    {
-      titulo: 'Lorem ipsum dolor sit amet',
-      subtitulo: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-      fecha: '17/05/2020',
-      img: '../../../assets/img/noticia5.jpg'
-    },
-    {
-      titulo: 'Lorem ipsum dolor sit amet',
-      subtitulo: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-      fecha: '17/05/2020',
-      img: '../../../assets/img/noticia6.jpg'
-    },
-    {
-      titulo: 'Lorem ipsum dolor sit amet',
-      subtitulo: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-      fecha: '17/05/2020',
-      img: '../../../assets/img/noticia7.jpg'
-    },
-    {
-      titulo: 'Lorem ipsum dolor sit amet',
-      subtitulo: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-      fecha: '17/05/2020',
-      img: '../../../assets/img/noticia8.jpg'
-    }
-  ];
+  noticias: Noticia[] = [];
+  paginaLength = true;
 
   constructor(
-    private noticiaService: NoticiaService,
+    public noticiaService: NoticiaService,
     private router: Router) { }
 
   ngOnInit(): void {
     window.scrollTo(0,0);
     this.noticiaService.noticiaCompleta = false;
+
+    //Obtener Noticias
+    this.noticiaService.getUltimasNoticias()
+    .subscribe((res: RespuestaNoticia) => {
+      this.noticias.push(...res.noticias);
+    });
   }
 
   mostrarNoticia(noticia: any){
@@ -75,6 +34,30 @@ export class NoticiasComponent implements OnInit {
     console.log(this.noticiaService.noticiaSel);
     this.noticiaService.noticiaCompleta = true;
     this.router.navigateByUrl('noticiaCompleta');
+  }
+
+  restar(){
+    this.paginaLength = true;
+    this.noticiaService.getNoticiasPaginadasMenos()
+    .subscribe((res: RespuestaNoticia) => {
+      this.noticias = res.noticias;
+    });
+    window.scrollTo(0, 0);
+  }
+
+  sumar(){
+    this.noticiaService.getNoticiasPaginadasMas()
+    .subscribe((res: RespuestaNoticia) => {
+      this.noticias = res.noticias;
+      if(res.noticias.length !== 8 ){
+        this.paginaLength = false;
+      }
+      if(res.noticias.length === 0){
+        this.restar();
+        this.paginaLength = false;
+      }
+    });
+    window.scrollTo(0, 0);
   }
 
 }

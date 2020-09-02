@@ -1,4 +1,8 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+
+const urlBase = environment.url;
 
 @Injectable({
   providedIn: 'root'
@@ -6,8 +10,26 @@ import { Injectable } from '@angular/core';
 export class NoticiaService {
 
   noticiaSel: any;
-
   noticiaCompleta = false;
+  pagina = 1;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  getUltimasNoticias(){
+    return this.http.get(`${urlBase}/noticias/getNoti?pagina=${this.pagina}`);
+  }
+
+  getNoticiasPaginadasMas(){
+    this.pagina++;
+    return this.http.get(`${urlBase}/noticias/getNoti?pagina=${this.pagina}`);
+  }
+
+  getNoticiasPaginadasMenos(){
+    if(this.pagina <= 1){
+      this.pagina = 1;
+    } else {
+      this.pagina--;
+    }
+    return this.http.get(`${urlBase}/noticias/getNoti?pagina=${this.pagina}`);
+  }
 }
