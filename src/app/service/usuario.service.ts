@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { promise } from 'protractor';
 import { resolve } from 'dns';
+import { Router } from '@angular/router';
 
 const urlBase = environment.url;
 
@@ -15,12 +16,16 @@ export class UsuarioService {
   autentificado = false;//Grand
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router  
   ) { }
 
   login(nombre: string, password: string){
+
     const data = {nombre, password};
+    
     return new Promise (resolve => {
+
       this.http.post(`${urlBase}/usuario/entrar`, data)
       .subscribe((res: any) => {
         if(res.ok) {
@@ -40,5 +45,7 @@ export class UsuarioService {
 
   logOut(){
     this.token = null;
+    this.autentificado = false;
+    this.router.navigateByUrl('inicio');
   }
 }

@@ -89,7 +89,7 @@ export class NavbarComponent implements OnInit {
   }
 
   logOut() {
-    this.usuarioService.logOut
+    this.usuarioService.logOut();
     this.cerrarNavbar();
     this.modalService.logOut();
     const Toast = Swal.mixin({
