@@ -10,13 +10,26 @@ const urlBase = environment.url;
 export class NoticiaService {
 
   noticiaSel: any;
-
   noticiaCompleta = false;
   pagina = 1;
 
   constructor(private http: HttpClient) { }
 
   getUltimasNoticias(){
+    return this.http.get(`${urlBase}/noticias/getNoti?pagina=${this.pagina}`);
+  }
+
+  getNoticiasPaginadasMas(){
+    this.pagina++;
+    return this.http.get(`${urlBase}/noticias/getNoti?pagina=${this.pagina}`);
+  }
+
+  getNoticiasPaginadasMenos(){
+    if(this.pagina <= 1){
+      this.pagina = 1;
+    } else {
+      this.pagina--;
+    }
     return this.http.get(`${urlBase}/noticias/getNoti?pagina=${this.pagina}`);
   }
 }
