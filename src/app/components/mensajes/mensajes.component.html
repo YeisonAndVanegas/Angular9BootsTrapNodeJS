@@ -2,30 +2,28 @@
     <h3 class="ultimas text-uppercase font-weight-bold mt-5 text-left">
         <span class="badge badge-warning">Mensajes</span>
     </h3>
-    <div class="container text-center mt-3">
+    <div *ngFor="let mensaje of mensajesEmail; let i = index" 
+        class="container text-center mt-3">
         <ul class="list-unstyled backUltimas28 pt-4 pl-4 pr-4 mt-1 text-justify">
             <li class="text-left">
-                <span class="mr-3 colorTexto40">Martes 25/08/2020</span>
-                <span><small class="colorTexto40">10:34 am</small></span>
+                <span class="mr-3 colorTexto40">{{mensaje.created | date: 'fullDate'}}</span>
+                <span><small class="colorTexto40">{{mensaje.created | date: 'shortTime'}}</small></span>
             </li>
             <li class="backMensajes44 mb-5">
                 <div class="media-body">
                     <h6 class="mb-1">
                         <img src="../../../assets/img/email.jpg" class="tamanoYo29 rounded-circle mr-2 backImgNoti30">
-                        <span class="backTituloNoti33">yeison.oyola@sophossolutions.com</span>
+                        <span class="backTituloNoti33">{{mensaje.email}}</span>
                         <a href="mailto:yeison.oyola@sophossolutions.com" target="_blank" rel="noopener noreferrer">
                             <i class="fas fa-reply ml-4 colorName3 cursor7"></i>
                         </a>
-                        <i class="far fa-trash-alt ml-4 cursor7"></i>
+                        <i (click)="borrarMensaje(mensaje)" class="far fa-trash-alt ml-4 cursor7"></i>
                     </h6>
                     <span class="colorNoti31">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere debitis quos officiis nobis aliquid sit! 
-                        Necessitatibus, deserunt impedit eum molestiae perspiciatis odio odit dolorum ipsam! Atque, laborum accusantium 
-                        ad quis veniam, quia quae unde modi assumenda corporis, praesentium illo obcaecati temporibus reprehenderit 
-                        ea hic sequi aperiam rem quisquam qui amet sapiente? Inventore hic facere quaerat fugit modi culpa laboriosam ut quisquam id. 
+                        {{mensaje.mensaje}}
                     </span>
                     <div class="text-center">
-                        <span class="badge badge-warning mr-3">1/1</span>
+                        <span class="badge badge-warning mr-3">{{i+1}}/{{mensajes.suma}}</span>
                     </div>
                 </div>
             </li>
