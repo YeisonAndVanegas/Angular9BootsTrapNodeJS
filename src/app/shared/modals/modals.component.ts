@@ -95,16 +95,17 @@ export class ModalsComponent implements OnInit {
     $('#loginModal').modal('hide');
   }
 
-  login(forma: NgForm) {
+  async login(forma: NgForm) {
     if(forma.invalid){
       this.salirLogin();
     }
 
-    const usuarioValido = this.usuarioService.login(this.usuarioLogin.nombre, this.usuarioLogin.password);
+    const usuarioValido = await this.usuarioService.login(this.usuarioLogin.nombre, this.usuarioLogin.password);
 
     if(usuarioValido) {
       this.salirLogin();
       this.usuarioService.autentificado = true; //Guard
+
       setTimeout(() => {
         $('.navbar-collapse').collapse('hide');
       }, 1000);
@@ -139,6 +140,7 @@ export class ModalsComponent implements OnInit {
       $('.navbar-collapse').collapse('hide');
       this.salirLogin();
       this.limpiarUsuario();
+      
     }
 
   }

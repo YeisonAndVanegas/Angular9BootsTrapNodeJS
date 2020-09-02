@@ -23,8 +23,22 @@ export class UsuarioService {
     return new Promise (resolve => {
       this.http.post(`${urlBase}/usuario/entrar`, data)
       .subscribe((res: any) => {
-        console.log(res)
+        if(res.ok) {
+          this.guardarToken(res.token);
+          resolve(true);
+        } else {
+          resolve(false);
+          this.logOut();
+        }
       });
     });
+  }
+
+  guardarToken(token: string){
+    this.token = token;
+  }
+
+  logOut(){
+    this.token = null;
   }
 }
