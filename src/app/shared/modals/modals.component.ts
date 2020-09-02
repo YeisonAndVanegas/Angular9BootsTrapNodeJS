@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalService } from 'src/app/service/modal.service';
 import { NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { UsuarioService } from 'src/app/service/usuario.service';
 
 declare let $:any;
 
@@ -22,7 +23,10 @@ export class ModalsComponent implements OnInit {
     password: '123'
   };
 
-  constructor(public modalService: ModalService) {
+  constructor(
+    public modalService: ModalService,
+    public usuarioService: UsuarioService
+    ) {
     this.modalService.privacidadSeleccionada = true;
   }
 
@@ -92,10 +96,15 @@ export class ModalsComponent implements OnInit {
   }
 
   login(forma: NgForm) {
-    console.log(forma.value);
-
-    if(this.usuarioLogin.nombre === 'Yeison' && this.usuarioLogin.password === '123') {
+    if(forma.invalid){
       this.salirLogin();
+    }
+
+    const usuarioValido = this.usuarioService.login(this.usuarioLogin.nombre, this.usuarioLogin.password);
+
+    if(usuarioValido) {
+      this.salirLogin();
+      this.usuarioService.autentificado = true; //Guard
       setTimeout(() => {
         $('.navbar-collapse').collapse('hide');
       }, 1000);
