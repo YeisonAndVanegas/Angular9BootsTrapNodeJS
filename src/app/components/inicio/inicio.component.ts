@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NoticiaService } from 'src/app/service/noticia.service';
+import { ImagenesYoService } from 'src/app/service/imagenes-yo.service';
+import { Noticia, RespuestaNoticia } from 'src/app/interfaces/noticias';
 
 declare let $: any;
 
@@ -13,17 +15,30 @@ declare let $: any;
 export class InicioComponent implements OnInit {
 
   mostrarYo = true;
+  noticias: Noticia[] = [];
 
   constructor(
     private router: Router,
-    private noticiaService: NoticiaService) { }
+    private noticiaService: NoticiaService,
+    public imagenesYo: ImagenesYoService) { }
 
   ngOnInit(): void {
     window.scrollTo(0,0);
-    $(() => {
-      $('[data-toggle="tooltip"]').tooltip();
-    });
+    setTimeout(() => {
+      $(() => {
+        $('[data-toggle="tooltip"]').tooltip({
+          trigger: 'hover'
+        });
+      });
+    }, 150);
     this.noticiaService.noticiaCompleta = false;
+
+    //Obtener 3 ultimas noticias
+    this.noticiaService.getUltimasNoticias()
+    .subscribe((res: RespuestaNoticia) => {
+      this.noticias.push(...res.noticias.slice(0, 3));
+    });
+
   }
 
   yoMostrar() {
@@ -38,14 +53,15 @@ export class InicioComponent implements OnInit {
     $('#sobreMi').modal();
   }
 
-  mostrarNoticia() {
+  mostrarNoticia(noticia: Noticia) {
     $(() => {
       $('[data-toggle="tooltip"]').tooltip('hide');
     });
     this.noticiaService.noticiaCompleta = true;
+    this.noticiaService.noticiaSel = noticia;
     setTimeout(() => {
       this.router.navigateByUrl('noticiaCompleta')  
-    }, 150);
+    }, 600);
     
   }
 }
