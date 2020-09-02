@@ -5,7 +5,6 @@ import { NoticiaCompletaRoutingModule } from './noticia-completa-routing.module'
 import { PipesModule } from 'src/app/pipes/pipes/pipes.module';
 import { NoticiaCompletaComponent } from './noticia-completa.component';
 
-
 @NgModule({
   declarations: [NoticiaCompletaComponent],
   imports: [
