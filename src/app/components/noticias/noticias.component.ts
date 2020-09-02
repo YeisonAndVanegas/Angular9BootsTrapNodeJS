@@ -37,10 +37,12 @@ export class NoticiasComponent implements OnInit {
   }
 
   restar(){
+    this.paginaLength = true;
     this.noticiaService.getNoticiasPaginadasMenos()
     .subscribe((res: RespuestaNoticia) => {
       this.noticias = res.noticias;
     });
+    window.scrollTo(0, 0);
   }
 
   sumar(){
@@ -54,8 +56,8 @@ export class NoticiasComponent implements OnInit {
         this.restar();
         this.paginaLength = false;
       }
-
     });
+    window.scrollTo(0, 0);
   }
 
 }

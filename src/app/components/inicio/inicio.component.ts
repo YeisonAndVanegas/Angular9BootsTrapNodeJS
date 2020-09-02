@@ -54,12 +54,14 @@ export class InicioComponent implements OnInit {
   }
 
   mostrarNoticia(noticia: Noticia) {
+    $(() => {
       $('[data-toggle="tooltip"]').tooltip('hide');
+    });
     this.noticiaService.noticiaCompleta = true;
     this.noticiaService.noticiaSel = noticia;
     setTimeout(() => {
       this.router.navigateByUrl('noticiaCompleta')  
-    }, 150);
+    }, 600);
     
   }
 }
