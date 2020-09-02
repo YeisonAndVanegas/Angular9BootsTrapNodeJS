@@ -3,6 +3,7 @@ import { ModalService } from 'src/app/service/modal.service';
 import { NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { UsuarioService } from 'src/app/service/usuario.service';
+import { MensajesService } from 'src/app/service/mensajes.service';
 
 declare let $:any;
 
@@ -25,7 +26,8 @@ export class ModalsComponent implements OnInit {
 
   constructor(
     public modalService: ModalService,
-    public usuarioService: UsuarioService
+    public usuarioService: UsuarioService,
+    public mensajes: MensajesService
     ) {
     this.modalService.privacidadSeleccionada = true;
   }
@@ -47,7 +49,6 @@ export class ModalsComponent implements OnInit {
   contactoYei(y: NgForm){
     if (y.invalid){
       $('#contacto').modal('hide');
-      console.log(y.value)
       this.limpiarMensaje();
       const Toast = Swal.mixin({
         toast: true,
@@ -64,7 +65,7 @@ export class ModalsComponent implements OnInit {
 
     } else {
       $('#contacto').modal('hide');
-      console.log(y.value)
+      this.mensajes.crearMensaje(this.mensaje.email, this.mensaje.mensaje);
       this.limpiarMensaje();
         const Toast = Swal.mixin({
           toast: true,
