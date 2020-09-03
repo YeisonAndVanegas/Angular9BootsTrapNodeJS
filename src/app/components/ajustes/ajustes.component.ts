@@ -24,9 +24,40 @@ export class AjustesComponent implements OnInit {
     });
   }
 
+  ocultarTooltip(){
+    $(() => {
+      $('[data-toggle="tooltip"]').tooltip('hide');
+    });
+  }
+
   editarImgYo(img: foto){
     this.fotosSel = img;
     console.log(this.fotosSel.img);
+
+    if(this.fotosSel.img === this.imagenYoService.img1){
+      $('#imagen').modal();
+      this.imagenYoService.imagenNombre = '1a.jpg';
+      this.imagenYoService.imagenPath = this.fotosSel.img;
+      this.ocultarTooltip();
+    }
+    if(this.fotosSel.img === this.imagenYoService.img3){
+      $('#imagen').modal();
+      this.imagenYoService.imagenNombre = '3a.jpg';
+      this.imagenYoService.imagenPath = this.fotosSel.img;
+      this.ocultarTooltip();
+    }
+    if(this.fotosSel.img === this.imagenYoService.img2){
+      $('#imagen').modal();
+      this.imagenYoService.imagenNombre = '2a.jpg';
+      this.imagenYoService.imagenPath = this.fotosSel.img;
+      this.ocultarTooltip();
+    }
+    if(this.fotosSel.img === this.imagenYoService.img4){
+      $('#imagen').modal();
+      this.imagenYoService.imagenNombre = '4a.jpg';
+      this.imagenYoService.imagenPath = this.fotosSel.img;
+      this.ocultarTooltip();
+    }
   }
 
 }

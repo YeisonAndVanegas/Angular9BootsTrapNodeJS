@@ -1,0 +1,37 @@
+<!-- ******************
+*** Modal Imagen Yo ***
+******************* -->
+<div class="modal fade mt-5 py-5" id="imagen" data-backdrop="static" tabindex="-1" role="dialog"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content colorModal11 text-center">
+      <h3 class="mb-4">
+        <img [src]="imagenYoService.imagenPath" class="img-fluid tamanoMiniYo45 ml-3">
+        <span class="badge badge-warning ml-3"> <small>{{imagenYoService.imagenNombre}}</small> </span>
+        <button type="button" class="close text-right colorName3" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </h3>
+      <div class="container backModal12">
+        <div class="modal-body text-center colorTexto10">
+          <div class="form-group">
+            <input type="file" class="form-control-file d-none" />
+            <button type="button"
+              class="btn btn-outline-warning btn-lg mt-3">
+              <i class="fas fa-upload mr-2"></i>
+              <span class="badge badge-warning mb-1">Seleccionar archivo</span>
+            </button>
+            <img src="..."
+              class="img-fluid tamanoMiniYo45">
+          </div>
+          <span 
+            class="badge badge-warning"></span>
+        </div>
+      </div>
+      <div class="container">
+        <button type="button"
+          class="btn btn-warning btn-block rounded-0 py-2 mt-4">Actualizar Imagen</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -8,6 +8,9 @@ const urlImg = environment.url;
 })
 export class ImagenesYoService {
 
+  imagenNombre: string;
+  imagenPath: string;
+
   img1 = `${urlImg}/uploadYo/Yeison/1a.jpg`;
   img2 = `${urlImg}/uploadYo/Yeison/2a.jpg`;
   img3 = `${urlImg}/uploadYo/Yeison/3a.jpg`;
