@@ -9,6 +9,8 @@ const urlBase = environment.url;
 })
 export class TecnologiaSobreMiService {
 
+  tecSel: string;
+
   constructor(
     private http: HttpClient 
   ) { }

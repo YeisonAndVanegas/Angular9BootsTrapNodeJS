@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ImagenesYoService } from 'src/app/service/imagenes-yo.service';
 import { foto } from 'src/app/interfaces/foto';
+import { TecnologiaSobreMiService } from 'src/app/service/tecnologia-sobre-mi.service';
 
 declare let $: any;
 
@@ -13,15 +14,29 @@ declare let $: any;
 export class AjustesComponent implements OnInit {
 
   fotosSel: foto;
+  tecnologiasDestacadas: string[] = [];
 
   constructor(
-    public imagenYoService: ImagenesYoService
+    public imagenYoService: ImagenesYoService,
+    private tecSobre: TecnologiaSobreMiService
   ) { }
 
   ngOnInit(): void {
     $(() => {
       $('[data-toggle="tooltip"]').tooltip();
     });
+    setTimeout(() => {
+      $(() => {
+        $('[data-toggle="tooltip"]').tooltip({
+          trigger: 'hover'
+        });
+      });
+    }, 150);
+    this.tecSobre.getTecnologia()
+    .subscribe((res: any ) => {
+      this.tecnologiasDestacadas.push(...res.tecnologias);
+    });
+    window.scrollTo(0,0);
   }
 
   ocultarTooltip(){
@@ -58,6 +73,12 @@ export class AjustesComponent implements OnInit {
       this.imagenYoService.imagenPath = this.fotosSel.img;
       this.ocultarTooltip();
     }
+  }
+
+  editarTec(tec: string) {
+    this.tecSobre.tecSel = tec;
+    console.log(this.tecSobre.tecSel)
+    this.ocultarTooltip();
   }
 
 }
