@@ -76,9 +76,13 @@ export class AjustesComponent implements OnInit {
   }
 
   editarTec(tec: string) {
+    this.tecSobre.mostrarTec = true;
     this.tecSobre.tecSel = tec;
     console.log(this.tecSobre.tecSel)
     this.ocultarTooltip();
+    setTimeout(() => {
+      $('#tecnologia').modal();
+    }, 100);
   }
 
 }

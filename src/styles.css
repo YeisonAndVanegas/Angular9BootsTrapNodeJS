@@ -381,3 +381,10 @@ color: #00acee;
   border-radius: 2px;
   padding: 10px !important;
 }
+
+.backInputTec47 {
+  background-image: url('./assets/img/navfoo.jpg');
+  border: 1px solid rgba(255, 255, 0, 0.3);
+  color: rgb(248, 248, 120) !important;
+  text-align: center;
+}
