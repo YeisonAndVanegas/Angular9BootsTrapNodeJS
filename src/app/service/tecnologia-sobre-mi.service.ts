@@ -12,6 +12,7 @@ export class TecnologiaSobreMiService {
 
   tecSel: any;
   mostrarTec = false;
+  mostrarSobreMi = false;
 
   constructor(
     private http: HttpClient,
@@ -34,4 +35,14 @@ export class TecnologiaSobreMiService {
     return this.http.post(`${urlBase}/tecnologia/updateTecno/${id}`, tec, {headers})
     .subscribe();
   }
+
+  actualizarSobreMi(sobreMi: string, id: string){
+    const headers = {
+      miToken: this.usuarioService.token
+    };
+
+    return this.http.post(`${urlBase}/sobreMi/updateSobreMi/${id}`, sobreMi, {headers})
+    .subscribe();
+  }
+
 }
