@@ -61,7 +61,7 @@ export class InicioComponent implements OnInit {
     this.noticiaService.noticiaSel = noticia;
     setTimeout(() => {
       this.router.navigateByUrl('noticiaCompleta')  
-    }, 600);
+    }, 100);
     
   }
 }

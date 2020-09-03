@@ -16,7 +16,7 @@ export class NoticiaService {
   constructor(private http: HttpClient) { }
 
   getUltimasNoticias(){
-    return this.http.get(`${urlBase}/noticias/getNoti?pagina=${this.pagina}`);
+    return this.http.get(`${urlBase}/noticias/getNoti?pagina=1`);
   }
 
   getNoticiasPaginadasMas(){

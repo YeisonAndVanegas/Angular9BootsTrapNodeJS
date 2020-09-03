@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NoticiaCompletaGuard } from './guards/noticia-completa.guard';
-
+import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
   {
@@ -20,12 +20,17 @@ const routes: Routes = [
   {
     path: 'mensajes', loadChildren: () =>
     import('./components/mensajes/mensajes.module').then(m => m.MensajesModule)
+    /*,
+    canActivate: [LoginGuard]*/
   },
   {
     path: 'ajustes', loadChildren: () =>
     import('./components/ajustes/ajustes.module').then(m => m.AjustesModule)
+    /*,
+    canActivate: [LoginGuard]*/
   },
-  { path: '', pathMatch: 'full', redirectTo: 'inicio' }
+  { path: '', pathMatch: 'full', redirectTo: 'inicio' },
+  { path: '**', pathMatch: 'full', redirectTo: 'inicio' }
 
 ];
 

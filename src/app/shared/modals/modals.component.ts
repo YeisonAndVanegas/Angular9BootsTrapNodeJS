@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ModalService } from 'src/app/service/modal.service';
 import { NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { UsuarioService } from 'src/app/service/usuario.service';
+import { MensajesService } from 'src/app/service/mensajes.service';
 
 declare let $:any;
 
@@ -22,7 +24,11 @@ export class ModalsComponent implements OnInit {
     password: '123'
   };
 
-  constructor(public modalService: ModalService) {
+  constructor(
+    public modalService: ModalService,
+    public usuarioService: UsuarioService,
+    public mensajes: MensajesService
+    ) {
     this.modalService.privacidadSeleccionada = true;
   }
 
@@ -43,7 +49,6 @@ export class ModalsComponent implements OnInit {
   contactoYei(y: NgForm){
     if (y.invalid){
       $('#contacto').modal('hide');
-      console.log(y.value)
       this.limpiarMensaje();
       const Toast = Swal.mixin({
         toast: true,
@@ -60,7 +65,7 @@ export class ModalsComponent implements OnInit {
 
     } else {
       $('#contacto').modal('hide');
-      console.log(y.value)
+      this.mensajes.crearMensaje(this.mensaje.email, this.mensaje.mensaje);
       this.limpiarMensaje();
         const Toast = Swal.mixin({
           toast: true,
@@ -91,11 +96,17 @@ export class ModalsComponent implements OnInit {
     $('#loginModal').modal('hide');
   }
 
-  login(forma: NgForm) {
-    console.log(forma.value);
-
-    if(this.usuarioLogin.nombre === 'Yeison' && this.usuarioLogin.password === '123') {
+  async login(forma: NgForm) {
+    if(forma.invalid){
       this.salirLogin();
+    }
+
+    const usuarioValido = await this.usuarioService.login(this.usuarioLogin.nombre, this.usuarioLogin.password);
+
+    if(usuarioValido) {
+      this.salirLogin();
+      this.usuarioService.autentificado = true; //Guard
+
       setTimeout(() => {
         $('.navbar-collapse').collapse('hide');
       }, 1000);
@@ -130,6 +141,7 @@ export class ModalsComponent implements OnInit {
       $('.navbar-collapse').collapse('hide');
       this.salirLogin();
       this.limpiarUsuario();
+      
     }
 
   }
