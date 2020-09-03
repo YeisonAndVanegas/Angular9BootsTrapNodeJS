@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { strict } from 'assert';
+import { UsuarioService } from './usuario.service';
+import { RespuestaNoticia } from '../interfaces/noticias';
 
 const urlBase = environment.url;
 
@@ -13,15 +16,18 @@ export class NoticiaService {
   noticiaCompleta = false;
   pagina = 1;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private usuarioService: UsuarioService  
+  ) { }
 
   getUltimasNoticias(){
-    return this.http.get(`${urlBase}/noticias/getNoti?pagina=1`);
+    return this.http.get<RespuestaNoticia>(`${urlBase}/noticias/getNoti?pagina=1`);
   }
 
   getNoticiasPaginadasMas(){
     this.pagina++;
-    return this.http.get(`${urlBase}/noticias/getNoti?pagina=${this.pagina}`);
+    return this.http.get<RespuestaNoticia>(`${urlBase}/noticias/getNoti?pagina=${this.pagina}`);
   }
 
   getNoticiasPaginadasMenos(){
@@ -30,6 +36,28 @@ export class NoticiaService {
     } else {
       this.pagina--;
     }
-    return this.http.get(`${urlBase}/noticias/getNoti?pagina=${this.pagina}`);
+    return this.http.get<RespuestaNoticia>(`${urlBase}/noticias/getNoti?pagina=${this.pagina}`);
+  }
+
+  crearNoticia(
+    titulo: string,
+    subtitulo: string,
+    autor: string,
+    img: string,
+    imgYo: string,
+    texto1: string,
+    texto2: string,
+    texto3: string,
+    texto4: string,
+    texto5: string,
+    ) {
+    const headers = {
+      miToken: this.usuarioService.token
+    };
+
+    const data = { titulo, subtitulo, autor, img, imgYo, texto1, texto2, texto3, texto4, texto5 };
+    return this.http.post<RespuestaNoticia>(`${urlBase}/noticias/uploadNoti/${img}/${imgYo}`, data, {headers})
+    .subscribe();
+
   }
 }

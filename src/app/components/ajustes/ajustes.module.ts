@@ -6,10 +6,11 @@ import { AjustesComponent } from './ajustes.component';
 import { ModalsComponent } from './modals.component';
 
 import { FormsModule } from '@angular/forms';
+import { CrearNoticiaComponent } from './crear-noticia/crear-noticia.component';
 
 
 @NgModule({
-  declarations: [AjustesComponent, ModalsComponent],
+  declarations: [AjustesComponent, ModalsComponent, CrearNoticiaComponent],
   imports: [
     CommonModule,
     AjustesRoutingModule,
