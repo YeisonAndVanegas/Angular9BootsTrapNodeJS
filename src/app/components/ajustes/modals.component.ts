@@ -16,4 +16,17 @@ export class ModalsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  seleccionImg(archivo: File){
+    this.imagenYoService.imagenSubir = archivo;
+    this.imagenYoService.mostrarNombre = true;
+    const reader = new FileReader();
+    reader.onload = () => this.imagenYoService.imagenSel = reader.result;
+    reader.readAsDataURL(archivo);
+    console.log(archivo.name);
+  }
+
+  cambiarMostrar(){
+    this.imagenYoService.mostrarNombre = false;
+  }
+
 }
