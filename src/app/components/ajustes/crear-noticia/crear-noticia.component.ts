@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { NoticiaService } from 'src/app/service/noticia.service';
+import { TooltipService } from 'src/app/service/tooltip.service';
 const URL = environment.url;
 
 @Component({
@@ -43,13 +44,17 @@ export class CrearNoticiaComponent implements OnInit {
   constructor(
     public usuarioService: UsuarioService,
     private http: HttpClient,
-    public noticiasService: NoticiaService) { }
+    public noticiasService: NoticiaService,
+    public tooltip: TooltipService
+  ) { }
 
   ngOnInit(): void {
   }
 
   ocultarBoton() {
     this.mostrarNoticia = false;
+    this.tooltip.settings = false;
+    this.tooltip.settings2 = false;
   }
 
   seleccionImgNoti(archivo: File) {
@@ -108,6 +113,9 @@ export class CrearNoticiaComponent implements OnInit {
     this.mostrarYo = true;
     this.mostrarImagenNoticia = false;
     this.mostrarImagenYo = false;
+    this.tooltip.settings = true;
+    this.tooltip.settings2 = true;
+    window.scrollTo(0, 0);
   }
 
   crearNoticia(f: NgForm) {
@@ -129,6 +137,9 @@ export class CrearNoticiaComponent implements OnInit {
       this.noticia.texto5);
 
     this.noticia = null;
+    this.tooltip.settings = true;
+    this.tooltip.settings2 = true;
+    window.scrollTo(0, 0);
 
     const Toast = Swal.mixin({
       toast: true,
