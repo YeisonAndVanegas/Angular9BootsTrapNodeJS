@@ -20,10 +20,9 @@ export class NoticiasComponent implements OnInit {
 
   ngOnInit(): void {
     this.noticiaService.noticiaCompleta = false;
-    this.noticiaService.pagina = 1;
 
     //Obtener Noticias
-    this.noticiaService.getUltimasNoticias()
+    this.noticiaService.getUltimasNoticias2()
     .subscribe((res: RespuestaNoticia) => {
       this.noticias.push(...res.noticias);
     });

@@ -20,8 +20,8 @@ export class ModalsComponent implements OnInit {
   };
 
   usuarioLogin = {
-    nombre: 'Yeison',
-    password: '123'
+    nombre: '',
+    password: ''
   };
 
   constructor(

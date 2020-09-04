@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit {
    ojo: boolean = true;
    login1: boolean;
    input1: boolean;
-   clave = '5f4d992d8573c5685cf29cc8';//Solo en Desarrollo
+   clave = '';//Solo en Desarrollo
 
   constructor(
     public modalService: ModalService,
