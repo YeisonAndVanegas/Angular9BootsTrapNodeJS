@@ -4,6 +4,8 @@ import { UsuarioService } from 'src/app/service/usuario.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
+import { NgForm } from '@angular/forms';
+import { TecnologiaSobreMiService } from 'src/app/service/tecnologia-sobre-mi.service';
 
 declare  let $: any;
 const urlBase = environment.url;
@@ -11,15 +13,15 @@ const urlBase = environment.url;
 @Component({
   selector: 'app-modals',
   templateUrl: './modals.component.html',
-  styles: [
-  ]
+  styles: []
 })
 export class ModalsComponent implements OnInit {
 
   constructor(
     public imagenYoService: ImagenesYoService,
     public usuarioServices: UsuarioService,
-    public http: HttpClient
+    private http: HttpClient,
+    public tecSobre: TecnologiaSobreMiService
   ) { }
 
   ngOnInit(): void {
@@ -39,12 +41,12 @@ export class ModalsComponent implements OnInit {
   }
 
   actualizarImagenYo() {
-    if(this.imagenYoService.imagenNombre != this.imagenYoService.imagenSubir.name){
+    if(this.imagenYoService.imagenNombre !== this.imagenYoService.imagenSubir.name){
       $('#imagen').modal('hide');
       this.cambiarMostrar();
     } else {
       const headers = {
-        miToken : this.usuarioServices.token
+        miToken: this.usuarioServices.token
       };
       
       const formData = new FormData();
@@ -71,5 +73,20 @@ export class ModalsComponent implements OnInit {
         });
       });
     }
+  }
+
+  actualizarTec(f: NgForm) {
+    this.tecSobre.actualizarTecnologia(this.tecSobre.tecSel, this.tecSobre.tecSel._id);
+    $('#tecnologia').modal('hide');
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'center',
+      showConfirmButton: false,
+      timer: 3000
+    });
+    Toast.fire({
+      title: 'Tecnología actualizada correctamente',
+      background: 'rgb(233,233,0)'
+    });
   }
 }

@@ -1,13 +1,13 @@
 <div class="container">
     <h3 class="colorName3xt-uppercase font-weight-bold text-left">
-        <span class="badge badge-warning text-uppercase">Yei Noticias</span>
+        <span class="badge badge-warning text-uppercase animated fadeInUp">Yei Noticias</span>
     </h3>
     <div class="container mt-3">
-        <div class="container backPaginaNoticias34">
+        <div class="container backPaginaNoticias34 animated fadeIn slow">
             <div class="row">
                 <div (click)="mostrarNoticia(noticia)" *ngFor="let noticia of noticias" class="col-12 col-md-4 col-lg-3 mb-3 cursor7">
                     <div class="card backNoticias35">
-                        <img [src]='noticia.img | imagenNoticia' class="card-img-top">
+                        <img [src]='noticia.img | imagenNoticia' class="card-img-top animated fadeIn slower">
                         <div class="card-body text-center">
                             <h5 class="card-title backNoticias36">{{noticia.titulo}}</h5>
                             <p class="card-text sub39">{{noticia.subtitulo}}</p>

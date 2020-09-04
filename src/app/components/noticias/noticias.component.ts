@@ -19,11 +19,10 @@ export class NoticiasComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    window.scrollTo(0,0);
     this.noticiaService.noticiaCompleta = false;
 
     //Obtener Noticias
-    this.noticiaService.getUltimasNoticias()
+    this.noticiaService.getUltimasNoticias2()
     .subscribe((res: RespuestaNoticia) => {
       this.noticias.push(...res.noticias);
     });

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { UsuarioService } from './usuario.service';
 
 const urlBase = environment.url;
 
@@ -9,10 +10,13 @@ const urlBase = environment.url;
 })
 export class TecnologiaSobreMiService {
 
-  tecSel: string;
+  tecSel: any;
+  mostrarTec = false;
+  mostrarSobreMi = false;
 
   constructor(
-    private http: HttpClient 
+    private http: HttpClient,
+    public usuarioService: UsuarioService
   ) { }
 
   getTecnologia(){
@@ -22,4 +26,23 @@ export class TecnologiaSobreMiService {
   getSobreMi(){
     return this.http.get(`${urlBase}/sobreMi/getSobreMi`);
   }
+
+  actualizarTecnologia(tec: string, id: string){
+    const headers = {
+      miToken: this.usuarioService.token
+    };
+
+    return this.http.post(`${urlBase}/tecnologia/updateTecno/${id}`, tec, {headers})
+    .subscribe();
+  }
+
+  actualizarSobreMi(sobreMi: string, id: string){
+    const headers = {
+      miToken: this.usuarioService.token
+    };
+
+    return this.http.post(`${urlBase}/sobreMi/updateSobreMi/${id}`, sobreMi, {headers})
+    .subscribe();
+  }
+
 }

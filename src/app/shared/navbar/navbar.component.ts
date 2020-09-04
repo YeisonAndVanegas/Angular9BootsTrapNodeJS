@@ -3,6 +3,7 @@ import { ModalService } from 'src/app/service/modal.service';
 import Swal from 'sweetalert2';
 import { MensajesService } from 'src/app/service/mensajes.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
+import { TooltipService } from 'src/app/service/tooltip.service';
 
 declare let $:any;
 
@@ -17,12 +18,13 @@ export class NavbarComponent implements OnInit {
    ojo: boolean = true;
    login1: boolean;
    input1: boolean;
-   clave = '5f4d992d8573c5685cf29cc8';//Solo en Desarrollo
+   clave = '';//Solo en Desarrollo
 
   constructor(
     public modalService: ModalService,
     public mensajes: MensajesService,
-    public usuarioService: UsuarioService
+    public usuarioService: UsuarioService,
+    public tooltip: TooltipService
     ) {
     this.modalService.ojo2 = true;
    }
@@ -35,6 +37,7 @@ export class NavbarComponent implements OnInit {
     $('.navbar-collapse').collapse('hide');
     this.login1 = false;
     this.input1 = false;
+    window.scrollTo(0,0);
   }
 
   alerta() {
@@ -45,18 +48,14 @@ export class NavbarComponent implements OnInit {
   onClick1(){
     this.ojo = false;
     this.login1 = false;
-    $( () => {
-      $('[data-toggle="tooltip"]').tooltip();
-    });
+    this.tooltip.abrirTooltip();
   }
 
   onClick2(){
     this.ojo = true;
     this.login1 = true;
     this.modalService.ojo2 = false;
-    $( () => {
-      $('[data-toggle="tooltip"]').tooltip();
-    });
+    this.tooltip.abrirTooltip();
   }
 
   entrar(){
@@ -65,7 +64,7 @@ export class NavbarComponent implements OnInit {
     $(document).ready(() => {
         $('#focusClave').trigger('focus');
     })
-    $('[data-toggle="tooltip"]').tooltip('hide');
+    this.tooltip.cerrarTooltip();
   }
 
   inputLogin(){
