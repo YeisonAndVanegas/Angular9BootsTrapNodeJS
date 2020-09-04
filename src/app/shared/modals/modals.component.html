@@ -18,11 +18,10 @@
           </div>
           <hr>
           <button *ngIf="modalService.privacidadSeleccionada" type="button"
-            class="btn btn-outline-warning btn-sm" data-dismiss="modal"> <span class="colorName3">No acepto</span>
+            class="btn btn-outline-warning btn-sm animated fadeIn slow colorName3" data-dismiss="modal">No acepto
           </button>
           <button (click)="contacto()" *ngIf="!modalService.privacidadSeleccionada" type="button"
-            class="btn btn-outline-warning btn-sm"><span class="colorName3">
-              Continuar </span>
+            class="btn btn-outline-warning btn-sm animated fadeIn slow colorName3">Continuar
           </button>
         </div>
       </div>
@@ -31,13 +30,13 @@
 </div>
 
 <!--Modal Contacto-->
-<div class="modal fade animated fadeIn slow mt-5 py-5" id="contacto" data-backdrop="static" tabindex="-1" role="dialog"
+<div class="modal fade animated fadeIn slow mt-5 py-5 animated fadeIn" id="contacto" data-backdrop="static" tabindex="-1" role="dialog"
   aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content colorModal11">
       <div class="container backModal12">
         <div class="container text-center mt-3">
-          <h3 class="fedeSub colorName3"><i class="fas fa-comments">&nbsp;Contacto</i>
+          <h3 class="fedeSub colorName3 animated fadeIn slow"><i class="fas fa-comments">&nbsp;Contacto</i>
             <button (click)="limpiarMensaje()" type="button" class="close text-right colorName3" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -89,7 +88,7 @@
             </div>
             <div class="form-group">
               <div class="input-group mb-2">
-                <input autocomplete="off" type="text" class="form-control backInput17"
+                <input autocomplete="off" type="password" class="form-control backInput17"
                   [(ngModel)]="usuarioLogin.password" name="password" required>
               </div>
             </div>
